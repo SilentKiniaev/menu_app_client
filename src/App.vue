@@ -1,9 +1,20 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <div class="container mb-5">
+    <nav class="d-flex justify-content-between align-items-center">
+      <div>DARALL</div>
+      <!-- <router-link to="/">Menu</router-link> -->
+      <button type="button" class="btn btn-light">Войти</button>
+    </nav>
+    <router-view />
+  </div>
+  <!-- <div
+    v-if="true"
+    class="spinner-border text-success position-absolute top-50 start-50"
+    role="status"
+    style="z-index: 1001"
+  >
+    <span class="visually-hidden">Loading...</span>
+  </div> -->
 </template>
 
 <style lang="scss">
