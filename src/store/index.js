@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
+import config from "@/config";
 
 export default createStore({
   state: {
@@ -31,8 +32,8 @@ export default createStore({
       state.menuFilter = data;
     },
     async createMenuItem(state, data) {
-      const formBaseUrl = "http://localhost:3000/menu";
-      const filesBaseUrl = "http://localhost:3000/menu/image/";
+      const formBaseUrl = config.apiHost + "/menu";
+      const filesBaseUrl = config.apiHost + "/menu/image/";
 
       console.log("createMenuItem mutation");
 
@@ -56,8 +57,8 @@ export default createStore({
       state.menuItems.push(menuItem);
     },
     async editMenuItem(state, data) {
-      const formBaseUrl = "http://localhost:3000/menu/";
-      const filesBaseUrl = "http://localhost:3000/menu/image/";
+      const formBaseUrl = config.apiHost + "/menu/";
+      const fileBaseUrl = config.apiHost + "/menu/image/";
 
       console.log("editMenuItem mutation");
 
@@ -73,7 +74,7 @@ export default createStore({
         const formData = new FormData();
         formData.append("file", data.file);
 
-        await axios.post(filesBaseUrl + menuItem.id, formData).then((res) => {
+        await axios.post(fileBaseUrl + menuItem.id, formData).then((res) => {
           console.log(res.data);
           menuItem.imageUrl = res.data.url;
         });
@@ -91,7 +92,7 @@ export default createStore({
   },
   actions: {
     fetchCategories({ commit }) {
-      const baseUrl = "http://localhost:3000/category";
+      const baseUrl = config.apiHost + "/category";
 
       axios
         .get(baseUrl)
@@ -99,7 +100,7 @@ export default createStore({
         .catch((e) => console.log(e));
     },
     fetchMenuItems({ commit }) {
-      const baseUrl = "http://localhost:3000/menu";
+      const baseUrl = config.apiHost + "/menu";
 
       axios
         .get(baseUrl)
